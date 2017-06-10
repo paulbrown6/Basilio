@@ -1,5 +1,6 @@
 package com.example.paulbrown.basilio;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,9 +9,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import com.example.paulbrown.basilio.fragments.FragmentAbout;
+import com.example.paulbrown.basilio.fragments.FragmentHome;
+import com.example.paulbrown.basilio.fragments.FragmentModules;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    FragmentHome fhome;
+    FragmentModules fmodules;
+    FragmentAbout fabout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,10 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        fhome = new FragmentHome();
+        fmodules = new FragmentModules();
+        fabout = new FragmentAbout();
     }
 
     @Override
@@ -45,13 +57,16 @@ public class Home extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        FragmentTransaction ftransaction = getFragmentManager().beginTransaction();
+
         if (id == R.id.nav_hompage) {
-
+            ftransaction.replace(R.id.contain, fhome);
         } else if (id == R.id.nav_modules) {
-
+            ftransaction.replace(R.id.contain, fmodules);
         } else if (id == R.id.nav_about) {
-
+            ftransaction.replace(R.id.contain, fabout);
         }
+        ftransaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
