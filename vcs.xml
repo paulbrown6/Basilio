@@ -6,6 +6,10 @@
           <option name="url" value="https://github.com/bulbum/Basilio.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/bulbum/spaceballs.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="E:\Programs\AndroidProjects" />
