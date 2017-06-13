@@ -21,6 +21,7 @@ public class Home extends AppCompatActivity
 
     String zhopppppa;
     String fuckyou;
+    String newfuck;
     FragmentHome fhome;
     FragmentModules fmodules;
     FragmentAbout fabout;
