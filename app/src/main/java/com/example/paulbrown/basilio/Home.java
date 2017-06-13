@@ -20,6 +20,7 @@ public class Home extends AppCompatActivity
 
 
     String zhopppppa;
+    String fuckyou;
     FragmentHome fhome;
     FragmentModules fmodules;
     FragmentAbout fabout;
