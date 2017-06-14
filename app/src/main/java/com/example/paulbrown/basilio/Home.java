@@ -110,9 +110,7 @@ public class Home extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-
-
+        
         FragmentTransaction ftransaction = getFragmentManager().beginTransaction();
         ftransaction = getFragmentManager().beginTransaction();
 
