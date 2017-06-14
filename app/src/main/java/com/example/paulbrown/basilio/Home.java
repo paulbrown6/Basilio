@@ -17,29 +17,83 @@ import com.example.paulbrown.basilio.fragments.FragmentModules;
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    FragmentHome fhome;
-    FragmentModules fmodules;
-    FragmentAbout fabout;
+    private FragmentHome fhome;
+    private FragmentModules fmodules;
+    private FragmentAbout fabout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+               this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
         fhome = new FragmentHome();
         fmodules = new FragmentModules();
         fabout = new FragmentAbout();
+
+
+    }
+
+    @Override
+    public void onPause(){
+
+        super.onPause();
+    }
+
+    @Override
+    public void onStop(){
+
+        super.onStop();
+    }
+
+    @Override
+    public void onStart(){
+
+        super.onStart();
+    }
+
+    @Override
+    public void onResume(){
+
+        super.onResume();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle outState) {
+
+        super.onRestoreInstanceState(outState);
+    }
+
+    @Override
+    public void onDestroy() {
+        moveTaskToBack(true);
+
+        super.onDestroy();
+
+        //System.runFinalizersOnExit(true);
+        this.finish();
+
+        System.exit(0);
     }
 
     @Override
@@ -53,6 +107,7 @@ public class Home extends AppCompatActivity
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -73,3 +128,9 @@ public class Home extends AppCompatActivity
         return true;
     }
 }
+
+
+/*
+ if (null != getSupportActionBar())
+            getSupportActionBar().hide();
+*/
