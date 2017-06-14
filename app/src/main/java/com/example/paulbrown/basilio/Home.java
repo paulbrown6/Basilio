@@ -17,14 +17,10 @@ import com.example.paulbrown.basilio.fragments.FragmentModules;
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-
-    String zhopppppa;
-    String fuckyou;
-    String newfuck;
     FragmentHome fhome;
     FragmentModules fmodules;
     FragmentAbout fabout;
+    FragmentTransaction ftransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +41,8 @@ public class Home extends AppCompatActivity
         fhome = new FragmentHome();
         fmodules = new FragmentModules();
         fabout = new FragmentAbout();
+        ftransaction = getFragmentManager().beginTransaction();
+        ftransaction.commit();
     }
 
     @Override
@@ -60,10 +58,9 @@ public class Home extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        FragmentTransaction ftransaction = getFragmentManager().beginTransaction();
+        ftransaction = getFragmentManager().beginTransaction();
 
         if (id == R.id.nav_hompage) {
             ftransaction.replace(R.id.contain, fhome);
