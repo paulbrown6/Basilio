@@ -46,6 +46,7 @@ public class Home extends AppCompatActivity
         fabout = new FragmentAbout();
 
 
+
     }
 
     @Override
@@ -108,10 +109,9 @@ public class Home extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        FragmentTransaction ftransaction = getFragmentManager().beginTransaction();
+        ftransaction = getFragmentManager().beginTransaction();
 
         if (id == R.id.nav_hompage) {
             ftransaction.replace(R.id.contain, fhome);
