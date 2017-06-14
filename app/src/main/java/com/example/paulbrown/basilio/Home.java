@@ -68,7 +68,6 @@ public class Home extends AppCompatActivity
             ftransaction.replace(R.id.contain, fabout);
         }
         ftransaction.commit();
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
