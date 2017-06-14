@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="84dp"
             android:layout_height="110dp"
-            app:popupTheme="@style/AppTheme.PopupOverlay" android:minHeight="60dp"/>
-
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:minHeight="60dp"/>
 
 </android.support.design.widget.CoordinatorLayout>
