@@ -8,21 +8,31 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:id="@+id/progressBar" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/progressBar"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="50"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:ems="10"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:id="@+id/editText" android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/editText"
+            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:lines="1000"
-            android:hint="Введите текст" android:layout_above="@+id/progressBar"
+            android:hint="Введите текст"
             style="@style/Widget.AppCompat.EditText"
-            android:layout_alignParentTop="true" android:gravity="top" android:overScrollMode="ifContentScrolls"
-            android:scrollbars="horizontal"/>
+            android:layout_alignParentTop="true"
+            android:gravity="top"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollbars="horizontal" android:layout_above="@+id/progressBar"/>
 
 </RelativeLayout>
