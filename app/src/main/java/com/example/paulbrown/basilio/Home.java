@@ -17,6 +17,11 @@ import com.example.paulbrown.basilio.fragments.FragmentModules;
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+
+    String zhopppppa;
+    String fuckyou;
+    String newfuck;
     FragmentHome fhome;
     FragmentModules fmodules;
     FragmentAbout fabout;
