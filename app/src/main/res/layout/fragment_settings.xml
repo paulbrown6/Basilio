@@ -1,0 +1,52 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:id="@+id/nav_settings"
+             android:textColor="@color/textcolor"
+             tools:context="com.example.paulbrown.basilio.fragments.FragmentSettings" android:paddingTop="50dp">
+
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/modules_table" android:layout_margin="20dp"
+    >
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+            <Switch
+                    android:text="@string/module1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/check_module_one"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/textcolor"
+                    android:checked="true"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <Switch
+                    android:text="@string/module2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/check_module_two"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/textcolor"
+                    android:checked="true"
+            />
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="horizontal">
+            <Switch
+                    android:text="@string/module3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/check_module_three"
+                    android:textSize="15sp"
+                    android:textColor="@color/textcolor"
+                    android:checked="true"
+            />
+        </TableRow>
+    </TableLayout>
+</FrameLayout>

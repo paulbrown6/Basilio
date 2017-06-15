@@ -2,10 +2,14 @@
     <string name="app_name">Basilio</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="default_start_text">Input text to check</string>
+    <string name="default_about_text">Cyril Bulbum, Paul Brown</string>
 
-    <string name="action_settings">hohoh</string>
-
-    <string name="general">Run</string>
-    <string name="modules">Control modules</string>
+    <string name="settings">Settings</string>
+    <string name="instruction">Instruction</string>
     <string name="about">About</string>
+
+    <string name="module1">Index of Friedman module</string>
+    <string name="module2">Explicit bigrammes module</string>
+    <string name="module3">Vocabulary module</string>
 </resources>

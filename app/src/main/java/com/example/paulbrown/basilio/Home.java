@@ -10,15 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import com.example.paulbrown.basilio.fragments.FragmentAbout;
-import com.example.paulbrown.basilio.fragments.FragmentHome;
-import com.example.paulbrown.basilio.fragments.FragmentModules;
+import com.example.paulbrown.basilio.fragments.FragmentInstruction;
+import com.example.paulbrown.basilio.fragments.FragmentSettings;
 
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private FragmentHome fhome;
-    private FragmentModules fmodules;
+    private FragmentSettings fsettings;
+    private FragmentInstruction finst;
     private FragmentAbout fabout;
 
     @Override
@@ -33,20 +33,15 @@ public class Home extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
-        fhome = new FragmentHome();
-        fmodules = new FragmentModules();
+        fsettings = new FragmentSettings();
         fabout = new FragmentAbout();
-
-
-
+        finst = new FragmentInstruction();
     }
 
     @Override
@@ -112,16 +107,17 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
         
         FragmentTransaction ftransaction = getFragmentManager().beginTransaction();
-        ftransaction = getFragmentManager().beginTransaction();
 
-        if (id == R.id.nav_hompage) {
-            ftransaction.replace(R.id.contain, fhome);
-        } else if (id == R.id.nav_modules) {
-            ftransaction.replace(R.id.contain, fmodules);
+        if (id == R.id.nav_settings) {
+            ftransaction.replace(R.id.contain, fsettings);
         } else if (id == R.id.nav_about) {
             ftransaction.replace(R.id.contain, fabout);
+        } else if (id == R.id.nav_instruction) {
+            ftransaction.replace(R.id.contain, finst);
         }
+
         ftransaction.commit();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
