@@ -2,16 +2,16 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:id="@+id/nav_about"
+              android:id="@+id/nav_instruction"
               tools:context="com.example.paulbrown.basilio.fragments.FragmentAbout"
               android:paddingTop="50dp" android:orientation="vertical">
 
     <TextView
-            android:text="Cyril Bulbum and Paul Brown"
+            android:text="How to work with it"
+            android:fontFamily="Microsoft JhengHei Light"
+            android:textColor="@color/textcolor"
             android:textSize="20sp"
             android:textStyle="normal"
-            android:fontFamily="Alix2"
-            android:textColor="@color/textcolor"
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
