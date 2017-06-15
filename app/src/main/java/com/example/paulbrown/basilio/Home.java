@@ -38,7 +38,7 @@ public class Home extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+//чот добавилa
         fsettings = new FragmentSettings();
         fabout = new FragmentAbout();
         finst = new FragmentInstruction();
