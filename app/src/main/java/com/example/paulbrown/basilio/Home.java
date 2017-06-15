@@ -8,26 +8,29 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import com.example.paulbrown.basilio.fragments.FragmentAbout;
+import com.example.paulbrown.basilio.fragments.FragmentHome;
 import com.example.paulbrown.basilio.fragments.FragmentInstruction;
 import com.example.paulbrown.basilio.fragments.FragmentSettings;
-import com.example.paulbrown.basilio.modules.ModuleFreedman;
 
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private FragmentHome fhome;
     private FragmentSettings fsettings;
     private FragmentInstruction finst;
     private FragmentTransaction ftransaction;
     private FragmentAbout fabout;
+    private ImageButton buttonBack;
     private String text;
+    private NavigationView navigationView;
+    private MenuItem checkedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,49 +38,34 @@ public class Home extends AppCompatActivity
         setContentView(R.layout.activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-               this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        buttonBack = (ImageButton) findViewById(R.id.button_back);
         ftransaction = getFragmentManager().beginTransaction();
         fsettings = new FragmentSettings();
+        fhome = new FragmentHome();
         fabout = new FragmentAbout();
+        finst = new FragmentInstruction();
         ftransaction.replace(R.id.contain, fhome);
         ftransaction.commit();
-
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ftransaction = getFragmentManager().beginTransaction();
+                ftransaction.replace(R.id.contain, fhome);
+                ftransaction.commit();
+                buttonBack.setVisibility(100);
+                buttonBack.setClickable(false);
+                checkedItem.setChecked(false);
+            }
+        });
         final ProgressBar progBar = (ProgressBar) findViewById(R.id.progressBar);
         View view = this.getLayoutInflater().inflate(R.layout.fragment_home, null);
         final EditText editText = (EditText) view.findViewById(R.id.editText);
         System.out.println(editText);
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                text = editText.getText().toString();
-                System.out.println(text);
-                progBar.setProgress((int)ModuleFreedman.getCountFreedman(text));
-            }
-        });
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                text = editable.toString();
-                System.out.println(editable);
-                progBar.setProgress((int)ModuleFreedman.getCountFreedman(text));
-            }
-        });
-        finst = new FragmentInstruction();
     }
 
     @Override
@@ -141,6 +129,7 @@ public class Home extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
+        checkedItem = item;
         ftransaction = getFragmentManager().beginTransaction();
         if (id == R.id.nav_settings) {
             ftransaction.replace(R.id.contain, fsettings);
@@ -150,6 +139,8 @@ public class Home extends AppCompatActivity
             ftransaction.replace(R.id.contain, finst);
         }
         ftransaction.commit();
+        buttonBack.setVisibility(0);
+        buttonBack.setClickable(true);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
