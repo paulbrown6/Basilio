@@ -8,11 +8,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import com.example.paulbrown.basilio.fragments.FragmentAbout;
 import com.example.paulbrown.basilio.fragments.FragmentHome;
 import com.example.paulbrown.basilio.fragments.FragmentInstruction;
@@ -63,9 +66,36 @@ public class Home extends AppCompatActivity
             }
         });
         final ProgressBar progBar = (ProgressBar) findViewById(R.id.progressBar);
-        View view = this.getLayoutInflater().inflate(R.layout.fragment_home, null);
+        View view = this.getLayoutInflater().inflate(R.layout.fragment_home, null);;
         final EditText editText = (EditText) view.findViewById(R.id.editText);
         System.out.println(editText);
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), editText.getText().toString(), Toast.LENGTH_LONG).show();
+                System.err.println(editText.getText().toString());
+            }
+        });
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Toast.makeText(getApplicationContext(), charSequence.toString(), Toast.LENGTH_LONG).show();
+                System.err.println(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Toast.makeText(getApplicationContext(), editable.toString(), Toast.LENGTH_LONG).show();
+                System.err.println(editable);
+                System.err.println("e");
+            }
+        });
+        System.out.println("hiu");
     }
 
     @Override
