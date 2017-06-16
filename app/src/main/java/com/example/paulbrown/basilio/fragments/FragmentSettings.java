@@ -1,12 +1,16 @@
 package com.example.paulbrown.basilio.fragments;
 
+import android.app.Fragment;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import com.example.paulbrown.basilio.R;
+import com.example.paulbrown.basilio.logistic.Logistic;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,30 +21,18 @@ import com.example.paulbrown.basilio.R;
  * create an instance of this fragment.
  */
 public class FragmentSettings extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
     public FragmentSettings() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentSettings.
-     */
-    // TODO: Rename and change types and number of parameters
     public static FragmentSettings newInstance(String param1, String param2) {
         FragmentSettings fragment = new FragmentSettings();
         Bundle args = new Bundle();
@@ -60,29 +52,48 @@ public class FragmentSettings extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        Switch moduleFreedman = (Switch) view.findViewById(R.id.check_module_freedman);
+        Switch moduleBigrammes = (Switch) view.findViewById(R.id.check_module_bigrammes);
+        Switch moduleVocabulary = (Switch) view.findViewById(R.id.check_module_vocabulary);
+        moduleFreedman.setOnCheckedChangeListener(new CheckedListener("freedman"));
+        moduleBigrammes.setOnCheckedChangeListener(new CheckedListener("bigrammes"));
+        moduleVocabulary.setOnCheckedChangeListener(new CheckedListener("vocabulary"));
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    private class CheckedListener implements CompoundButton.OnCheckedChangeListener{
+
+        private String module;
+
+        private CheckedListener(String modulename){
+            module = modulename;
+        }
+
+        @Override
+        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            Logistic.setModuleChecked(module, b);
+            System.out.println(module + " is " + b);
+        }
+    }
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
 
     @Override
     public void onDetach() {
@@ -90,18 +101,7 @@ public class FragmentSettings extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }
