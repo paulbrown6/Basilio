@@ -1,6 +1,6 @@
 package com.example.paulbrown.basilio.logistic;
 
-import com.example.paulbrown.basilio.modules.ModuleFreedman;
+import com.example.paulbrown.basilio.modules.Modules;
 
 /**
  * Created by Paul Brown on 16.06.2017.
@@ -12,7 +12,7 @@ public class Logistic {
     public static Integer progressState(String text){
         Integer percent = 50;
         if (isModuleFreedman){
-            percent = (int) ModuleFreedman.getCountFreedman(text);
+            percent = (int) Modules.toCountFreedman(text);
         }
         return percent;
     }
