@@ -4,23 +4,25 @@ import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.Switch;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import com.example.paulbrown.basilio.R;
 import com.example.paulbrown.basilio.logistic.Logistic;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FragmentSettings.OnFragmentInteractionListener} interface
+ * {@link FragmentHome.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FragmentSettings#newInstance} factory method to
+ * Use the {@link FragmentHome#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentSettings extends Fragment {
+public class FragmentHome extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -28,13 +30,15 @@ public class FragmentSettings extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private ProgressBar progbar;
 
-    public FragmentSettings() {
+    public FragmentHome() {
 
     }
 
-    public static FragmentSettings newInstance(String param1, String param2) {
-        FragmentSettings fragment = new FragmentSettings();
+
+    public static FragmentHome newInstance(String param1, String param2) {
+        FragmentHome fragment = new FragmentHome();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -53,28 +57,29 @@ public class FragmentSettings extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        Switch moduleFreedman = (Switch) view.findViewById(R.id.check_module_freedman);
-        Switch moduleBigrammes = (Switch) view.findViewById(R.id.check_module_bigrammes);
-        Switch moduleVocabulary = (Switch) view.findViewById(R.id.check_module_vocabulary);
-        moduleFreedman.setOnCheckedChangeListener(new CheckedListener("freedman"));
-        moduleBigrammes.setOnCheckedChangeListener(new CheckedListener("bigrammes"));
-        moduleVocabulary.setOnCheckedChangeListener(new CheckedListener("vocabulary"));
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        EditText edittext = (EditText) view.findViewById(R.id.editText);
+        edittext.addTextChangedListener(new TextListener());
+        progbar = (ProgressBar) view.findViewById(R.id.progressBar);
         return view;
     }
 
-    private class CheckedListener implements CompoundButton.OnCheckedChangeListener{
+    private class TextListener implements TextWatcher {
 
-        private String module;
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        private CheckedListener(String modulename){
-            module = modulename;
         }
 
         @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-            Logistic.setModuleChecked(module, b);
-            System.out.println(module + " is " + b);
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            System.out.println(editable.toString());
+            progbar.setProgress(Logistic.progressState(editable.toString()));
         }
     }
 
@@ -104,4 +109,5 @@ public class FragmentSettings extends Fragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
+
 }
