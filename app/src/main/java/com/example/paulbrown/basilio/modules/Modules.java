@@ -1,6 +1,5 @@
 package com.example.paulbrown.basilio.modules;
 
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +36,7 @@ public class Modules {
     }
     */
 
-    private int toCountExplicitBigrammes (String text){
+    public int toCountExplicitBigrammes (String text){
         /*
         * Возвращает количество появлений запретных биграмм
         * */
