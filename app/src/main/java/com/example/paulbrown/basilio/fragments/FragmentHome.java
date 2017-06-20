@@ -80,7 +80,7 @@ public class FragmentHome extends Fragment {
         @Override
         public void afterTextChanged(Editable editable) {
 
-            progbar.setProgress(Logistic.toCountProgressState(editable.toString()));
+            progbar.setProgress(100*Logistic.toCountProgressState(editable.toString()));
         }
     }
 
