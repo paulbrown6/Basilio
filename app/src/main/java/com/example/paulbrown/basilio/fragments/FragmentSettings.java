@@ -58,7 +58,7 @@ public class FragmentSettings extends Fragment {
         Switch moduleBigrammes = (Switch) view.findViewById(R.id.check_module_bigrammes);
         Switch moduleVocabulary = (Switch) view.findViewById(R.id.check_module_vocabulary);
         moduleFreedman.setOnCheckedChangeListener(new CheckedListener("freedman"));
-        moduleBigrammes.setOnCheckedChangeListener(new CheckedListener("bigrammes"));
+        moduleBigrammes.setOnCheckedChangeListener(new CheckedListener("bigrammes.txt"));
         moduleVocabulary.setOnCheckedChangeListener(new CheckedListener("vocabulary"));
         return view;
     }

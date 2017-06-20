@@ -1,6 +1,7 @@
 package com.example.paulbrown.basilio;
 
 import android.app.FragmentTransaction;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,10 @@ import com.example.paulbrown.basilio.fragments.FragmentAbout;
 import com.example.paulbrown.basilio.fragments.FragmentHome;
 import com.example.paulbrown.basilio.fragments.FragmentInstruction;
 import com.example.paulbrown.basilio.fragments.FragmentSettings;
+import com.example.paulbrown.basilio.modules.Modules;
+
+import java.io.InputStream;
+import java.util.Scanner;
 
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,6 +61,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 checkedItem.setChecked(false);
             }
         });
+
+        toLoadModules();
     }
 
     @Override
@@ -134,6 +141,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void toLoadModules(){
+        InputStream isBigr = getResources().openRawResource(R.raw.bigrammes);
+        InputStream isDict = getResources().openRawResource(R.raw.dictionary);
+        Scanner sc = new Scanner(isBigr);
+        Scanner sc2 = new Scanner(isDict);
+        Modules.toSetModules(sc.nextLine(), sc2.nextLine());
     }
 }
 

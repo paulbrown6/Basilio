@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import com.example.paulbrown.basilio.R;
+import com.example.paulbrown.basilio.logistic.Logistic;
 import com.example.paulbrown.basilio.modules.Modules;
 
 /**
@@ -79,7 +80,7 @@ public class FragmentHome extends Fragment {
         @Override
         public void afterTextChanged(Editable editable) {
 
-            progbar.setProgress((int) (100* Modules.toCountFreedman(editable.toString())));
+            progbar.setProgress(Logistic.toCountProgressState(editable.toString()));
         }
     }
 
