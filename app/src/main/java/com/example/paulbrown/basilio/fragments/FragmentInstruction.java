@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.example.paulbrown.basilio.R;
 
 /**
- * Fragment for telling you about us - developers
+ * Fragment for telling you how to work with it
  */
 public class FragmentInstruction extends Fragment {
 

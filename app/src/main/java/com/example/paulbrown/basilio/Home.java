@@ -36,21 +36,29 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.syncState();
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         buttonBack = (ImageButton) findViewById(R.id.button_back);
         ftransaction = getFragmentManager().beginTransaction();
+
         fsettings = new FragmentSettings();
         fhome = new FragmentHome();
         fabout = new FragmentAbout();
         finst = new FragmentInstruction();
+
         ftransaction.replace(R.id.contain, fhome);
         ftransaction.commit();
+
         buttonBack.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 ftransaction = getFragmentManager().beginTransaction();
@@ -104,12 +112,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     public void onDestroy() {
         moveTaskToBack(true);
-
         super.onDestroy();
-
-        //System.runFinalizersOnExit(true);
         this.finish();
-
         System.exit(0);
     }
 
@@ -126,8 +130,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         checkedItem = item;
         ftransaction = getFragmentManager().beginTransaction();
+
         if (id == R.id.nav_settings) {
             ftransaction.replace(R.id.contain, fsettings);
         } else if (id == R.id.nav_about) {
@@ -135,9 +141,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         } else if (id == R.id.nav_instruction) {
             ftransaction.replace(R.id.contain, finst);
         }
+
         ftransaction.commit();
+
         buttonBack.setVisibility(0);
         buttonBack.setClickable(true);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -146,14 +155,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private void toLoadModules(){
         InputStream isBigr = getResources().openRawResource(R.raw.bigrammes);
         InputStream isDict = getResources().openRawResource(R.raw.dictionary);
+
         Scanner sc = new Scanner(isBigr);
         Scanner sc2 = new Scanner(isDict);
+
         Modules.toSetModules(sc.nextLine(), sc2.nextLine());
     }
 }
-
-
-/*
- if (null != getSupportActionBar())
-            getSupportActionBar().hide();
-*/

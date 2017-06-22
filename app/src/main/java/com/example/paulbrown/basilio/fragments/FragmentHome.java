@@ -13,16 +13,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import com.example.paulbrown.basilio.R;
 import com.example.paulbrown.basilio.logistic.Logistic;
-import com.example.paulbrown.basilio.modules.Modules;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FragmentHome.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FragmentHome#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class FragmentHome extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -80,7 +72,7 @@ public class FragmentHome extends Fragment {
         @Override
         public void afterTextChanged(Editable editable) {
 
-            progbar.setProgress(100*Logistic.toCountProgressState(editable.toString()));
+            progbar.setProgress(Logistic.toCountProgressState(editable.toString()));
         }
     }
 

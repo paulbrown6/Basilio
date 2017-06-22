@@ -22,8 +22,6 @@ public class Modules {
             oneBigramme = BigramzAll.substring(0,nSymb);
             BigramzAll.delete(0, nSymb+1);   //оторвали слово до \n
 
-
-
             for (int i = 0; i < (text.length()-oneBigramme.length()); i++)
             {
                 if (text.substring(i, i + oneBigramme.length()).equals(oneBigramme))
@@ -31,10 +29,9 @@ public class Modules {
             }
         } while (BigramzAll.length()>0);
 
-        int kj=6;
         return k;
     }
-    public static double toCountFreedman(String text){
+    public static int toCountFreedmanRus(String text){
         int m = text.length();
 
         if (m == 0) return 0;
@@ -61,7 +58,8 @@ public class Modules {
             pi = Double.valueOf(entry.getValue().toString()) / length;
             Ic = Ic + Math.pow(pi, 2);
         }
-        return Ic;
+
+        return (int) Math.abs(Ic-0.0553);
     }
     public static int toCountDictionary(String text){
 
@@ -94,8 +92,6 @@ public class Modules {
             }
         }
 
-
-        int kj = 5;
         return k;
 }
 

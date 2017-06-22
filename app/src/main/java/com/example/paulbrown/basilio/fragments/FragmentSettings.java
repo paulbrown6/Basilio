@@ -12,14 +12,6 @@ import android.widget.Switch;
 import com.example.paulbrown.basilio.R;
 import com.example.paulbrown.basilio.logistic.Logistic;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FragmentSettings.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FragmentSettings#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentSettings extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -54,28 +46,37 @@ public class FragmentSettings extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
         Switch moduleFreedman = (Switch) view.findViewById(R.id.check_module_freedman);
         Switch moduleBigrammes = (Switch) view.findViewById(R.id.check_module_bigrammes);
         Switch moduleVocabulary = (Switch) view.findViewById(R.id.check_module_vocabulary);
-        moduleFreedman.setOnCheckedChangeListener(new CheckedListener("freedman"));
-        moduleBigrammes.setOnCheckedChangeListener(new CheckedListener("bigrammes.txt"));
-        moduleVocabulary.setOnCheckedChangeListener(new CheckedListener("vocabulary"));
+
+        moduleFreedman.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Logistic.setModuleChecked("1", isChecked);
+                System.out.println("1st module is " + isChecked);
+            }
+        });  //used short name for memory economy and more quick access to data
+        moduleBigrammes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Logistic.setModuleChecked("2", isChecked);
+                System.out.println("2nd module is " + isChecked);
+            }
+        });
+        moduleVocabulary.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Logistic.setModuleChecked("3", isChecked);
+                System.out.println("3rd module is " + isChecked);
+            }
+        });
+
         return view;
-    }
-
-    private class CheckedListener implements CompoundButton.OnCheckedChangeListener{
-
-        private String module;
-
-        private CheckedListener(String modulename){
-            module = modulename;
-        }
-
-        @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-            Logistic.setModuleChecked(module, b);
-            System.out.println(module + " is " + b);
-        }
     }
 
     public void onButtonPressed(Uri uri) {
